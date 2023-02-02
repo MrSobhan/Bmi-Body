@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/69c72dca40.js" crossorigin="anonymous"></script>
+    <title>BMI محاسبه شاخص بدني</title>
+    <style>
+        #box{
+            max-width: 90%;
+            height: auto;
+            background-image:linear-gradient(45deg , #319ee7 , #40f230 );
+            border-radius: 20px;
+            box-shadow: black 0 0 30px;
+            border: none;
+        }
+        #submit{
+            width:30%;
+            height: 45px;
+            background-image: linear-gradient(50deg ,rgb(233, 129, 210),rgb(206, 238, 118));
+            border: none;
+            transition: all 2s;
+            cursor: pointer;
+            box-shadow: black 0 0 20px;
+        }
+        #text-sq{
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bolder;
+        }
+        .input{
+            background-image: linear-gradient(50deg ,rgb(233, 129, 210),rgb(206, 238, 118));
+            width: 20%;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bolder;
+            text-align: center;
+            outline: none;
+            border: none;
+            box-shadow: blueviolet 0 0 40px;
+        }
+        #box-mms{
+            margin: 23px auto 0px; /*فاصله بیرونی از بالا*/
+            border-radius: 10px; /*گردی حاشیه ها*/
+            background-color: #84f5af; /*رنگ پس زمینه*/
+            width:50%; /*عرض*/
+            height: 180px;
+            border: 7px solid rgb(163, 132, 132);
+            backdrop-filter: sepia(80%);
+        }
+        #rahnama{
+         width: 30px;
+         height: 30px;
+         border-radius: 8px;
+         
+        }
+        #footer-text{
+         color: rgb(207, 24, 24);
+         font-size: 16px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bolder;
+        }
+        #box4{
+            width: 50%;
+            height: auto;
+            background-image: linear-gradient(50deg ,rgb(14, 233, 241), rgb(130, 24, 130));
+            border-radius: 20px;
+        }
+        .bmi{
+            font-size: 25px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bolder;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+    <body style="background-image: linear-gradient(50deg ,rgb(14, 198, 230),rgb(228, 55, 190));">
+    <section>
+        <main>
+        <center>
+        <div id="box">
+            <div><marquee style="color: rgb(255, 255, 255);font-size: 30px; font-weight: bold; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">BMI</marquee></div>
+           <br><br> 
+          <p id="text-sq">Enter Your Weight:</p>
+          <input type="number" inputmode="numeric" placeholder="(kg)" id="num1" class="input">
+          <p id="text-sq">Enter Your Height:</p>
+          <input type="number" inputmode="numeric" placeholder="(m)" id="num2" class="input">
+          <br><br><br>
+          <button id="submit" onclick="bmi()">BMIمحاسبه</button>
+          <br><br><br>
+          <div id="box-mms" hidden>
+              <p class="bmi">BMI:</p>
+             <p style="color: #f23030; font-family: Arial, Helvetica, sans-serif;;font-size: 20px ; font-weight: bolder;" id="txt"></p>
+            <p style="color: #f23030; font-family: Arial, Helvetica, sans-serif;;font-size: 20px; font-weight: bolder;" id="tit"></p>
+          </div>
+          <br><br><br>
+          <button id="submit" class="submit1"><i class="fa-solid fa-eraser"></i></button>
+          <br><br><br>
+         <span><a href="https://borzooyetebkar.com/wp-content/uploads/2021/08/%D8%B4%D8%A7%D8%AE%D8%B5-%D8%AA%D9%88%D8%AF%D9%87-%D8%A8%D8%AF%D9%86%DB%8C-BMI.png"><img src="http://writing.wisc.edu/blog/wp-content/uploads/question_mark-237x300.png" id="rahnama" align = right></a></span>
+         <br><br>
+         <div id="box4">
+        <p id="footer-text">© Created with by <a href="https://wa.me/989222311258" title=" 👌 " target="_blank">Mr.legend</a></p>
+        </div>
+        <div style="font-size: 10px;color: black;font-family: Arial, Helvetica, sans-serif;">Version 4.0.0</div>
+    </center>
+          <script>
+            let $ = document;
+            let result;
+            let BMI;
+            let p;
+            function bmi(){
+                let num1=$.getElementById('num1'); //kg
+                let num2=$.getElementById('num2'); //m        
+                p=(num1.value /(num2.value**2))
+                BMI=p.toFixed(2)
+                if(BMI<18.5){
+                result=("كمبود وزن شديد")
+                }else if(18.5<=BMI && BMI<25){
+                result=("نرمال")
+                }else if(25<=BMI && BMI<30){
+                result=("اضافه وزن")
+                 }else if(30<=BMI){
+                result=("اضافه وزن شديد")
+                }
+                if(isNaN(BMI) || num1.value==='' || num2.value===''){
+                    $.getElementById('txt').innerHTML=('🌹لطفا ابتدا وزن و قد خود را وارد كنيد');
+                }else{
+                $.getElementById('txt').innerHTML=BMI;
+                $.getElementById('tit').innerHTML=result;
+                }
+            }
+            setInterval(() => {
+                    if(BMI===undefined || result===undefined){
+                        $.getElementById('box-mms').hidden=true;
+                    }else{
+                        $.getElementById('box-mms').hidden=false;
+                    }
+                });
+                $.querySelector('.submit1').addEventListener('click' , () =>{
+                $.getElementById('num1').value='';  
+                $.getElementById('num2').value=''; 
+            })    
+        </script>
+        </div>
+      </main>
+    </section>    
+</body>
+</html>
