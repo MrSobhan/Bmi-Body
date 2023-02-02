@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time_Es</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="date"></h1>
+    <script>
+        var $ = document; // Change 'document' to '$' for better code
+        setInterval(function(){
+            var time = new Date()
+            var clock = $.getElementById('date') , hours , minutes , seconds;
+
+            if(time.getHours() < 10){
+                hours = "0"+time.getHours()
+            }else{
+                hours = time.getHours()
+            }
+
+            if(time.getMinutes() < 10){
+                minutes = "0"+time.getMinutes()
+            }else{
+                minutes = time.getMinutes()
+            }
+
+            if(time.getSeconds() < 10){
+                seconds = "0"+time.getSeconds()
+            }else{
+                seconds = time.getSeconds()
+            }
+
+            clock.innerHTML = hours+":"+minutes+":"+seconds;
+        })
+    </script>
+</body>
+</html>
